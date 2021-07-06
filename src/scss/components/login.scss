@@ -1,0 +1,30 @@
+.wrapper {
+  padding-top: 400px;
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fillings {
+  .title {
+    padding: 120px 0px 130px 0px;
+    font-size: 48px;
+    font-weight: 600;
+  }
+
+  .field {
+    padding-bottom: 5px;
+    font-weight: 400;
+    font-size: 18px;
+    color: #6e7191;
+  }
+}
+
+.fill {
+  padding-bottom: 25px;
+  font-weight: 400;
+  font-size: 24px;
+  color: #14142b;
+  border-bottom: 1px solid #14142b;
+}

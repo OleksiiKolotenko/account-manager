@@ -5,27 +5,70 @@ const onSubmit = (e) => {
 };
 const validate = (e) => {
   const errors = {};
+
+  if (e.username && e.username.length < 6) {
+    errors.username = "Enter at least 6 letters!";
+  }
+
+  if (e.email && !e.email.includes("@")) {
+    errors.email = "Email is incorrect.";
+  }
+
+  if (e.password && e.password.length < 6) {
+    errors.password = "Too short and week!";
+  }
+
+  return errors;
 };
 
 function Registration() {
   return (
     <div className="registration">
       <Form
-        onSubmit={onSubmit}
+        onSubmit={(obj) => {
+          console.log(obj);
+        }}
         validate={validate}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className="wrapper">
               <span className="title">Create your account</span>
               <span className="field">Username</span>
-              <Field name="username" component="input" placeholder="Username" />
+              <Field
+                name="username"
+                render={({ input, meta }) => (
+                  <div>
+                    <input {...input} placeholder="Username" />
+                    <br />
+                    {meta.touched && meta.error && <span>{meta.error}</span>}
+                  </div>
+                )}
+              />
               <span className="field">Email</span>
-              <Field name="email" component="input" placeholder="Email" />
+              <Field
+                name="email"
+                render={({ input, meta }) => (
+                  <div>
+                    <input {...input} placeholder="Email" />
+                    <br />
+                    {meta.touched && meta.error && <span>{meta.error}</span>}
+                  </div>
+                )}
+              />
               <span className="field">Password</span>
-              <Field name="password" component="input" placeholder="Password" />
+              <Field
+                name="password"
+                render={({ input, meta }) => (
+                  <div>
+                    <input {...input} placeholder="Password" type="password" />
+                    <br />
+                    {meta.touched && meta.error && <span>{meta.error}</span>}
+                  </div>
+                )}
+              />
               <div className="admin">
-                <input type="checkbox" name="a" value="Admin"></input>
-                <span className="field">Is admin</span>
+                <span className="field">Is admin?</span>
+                <br />
               </div>
               <button type="submit">Submit</button>
             </div>

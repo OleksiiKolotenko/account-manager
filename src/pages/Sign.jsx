@@ -1,6 +1,7 @@
 import React from "react";
 import { Sign } from "../api/api";
 import { Form, Field } from "react-final-form";
+import { Link } from "react-router-dom";
 const onSubmit = (e) => {
   debugger;
 };
@@ -27,13 +28,12 @@ const validate = (e) => {
 };
 
 function SignIn() {
-  const [mistake, setMistake] = React.useState();
+  const [mistake, setMistake] = React.useState(false);
 
   return (
     <div className="registration">
       <Form
         onSubmit={async (obj) => {
-          console.log("Sended form", obj);
           const Login = await Sign.login(obj);
           Login?.articleId?.message ? setMistake(true) : setMistake(false);
         }}
@@ -72,6 +72,9 @@ function SignIn() {
               <button type="submit" className="submit">
                 Sign in
               </button>
+              <Link to="/registration">
+                <button type="button">Create new account</button>
+              </Link>
             </div>
           </form>
         )}

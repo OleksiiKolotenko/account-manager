@@ -97,7 +97,6 @@ function Registration() {
               <button type="submit" className="submit">
                 Submit
               </button>
-
               <Link to="/sign-in">
                 <button type="button">Already got an account?</button>
               </Link>

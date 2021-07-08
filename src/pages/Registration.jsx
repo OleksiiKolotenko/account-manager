@@ -1,5 +1,7 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
+import { Profiles } from "../api/api";
+import { Redirect, Link } from "react-router-dom";
 const onSubmit = (e) => {
   debugger;
 };
@@ -7,15 +9,27 @@ const validate = (e) => {
   const errors = {};
 
   if (e.username && e.username.length < 6) {
-    errors.username = "Enter at least 6 letters!";
+    errors.username = "Name is too short (<6)";
+  }
+
+  if (e.username && e.username.length > 16) {
+    errors.username = "Name is too long (>16)";
   }
 
   if (e.email && !e.email.includes("@")) {
     errors.email = "Email is incorrect.";
   }
 
+  if (e.email && !e.email.includes(".")) {
+    errors.email = "Email is incorrect.";
+  }
+
   if (e.password && e.password.length < 6) {
-    errors.password = "Too short and week!";
+    errors.password = "Pass is too short (<6)";
+  }
+
+  if (e.password && e.password.length > 18) {
+    errors.password = "Pass is too long (>18)";
   }
 
   return errors;
@@ -26,7 +40,8 @@ function Registration() {
     <div className="registration">
       <Form
         onSubmit={(obj) => {
-          console.log(obj);
+          console.log("Sended form", obj);
+          Profiles.register(obj);
         }}
         validate={validate}
         render={({ handleSubmit }) => (
@@ -67,10 +82,23 @@ function Registration() {
                 )}
               />
               <div className="admin">
-                <span className="field">Is admin?</span>
-                <br />
+                <Field
+                  name="isAdmin"
+                  render={({ input }) => (
+                    <div>
+                      <input {...input} type="checkbox" value="false" />
+                      <span className="field">Is admin?</span>
+                      <br />
+                    </div>
+                  )}
+                />
               </div>
-              <button type="submit">Submit</button>
+              <button type="submit" className="submit">
+                Submit
+              </button>
+              <Link to="/sign-in">
+                <button type="button">Already got an account?</button>
+              </Link>
             </div>
           </form>
         )}

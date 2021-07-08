@@ -12,3 +12,11 @@ export const Profiles = {
       .then((response) => ({ articleId: response.data }));
   },
 };
+
+export const Sign = {
+  login(obj) {
+    return initial
+      .post("login", obj)
+      .then((response) => ({ articleId: response.data }));
+  },
+};

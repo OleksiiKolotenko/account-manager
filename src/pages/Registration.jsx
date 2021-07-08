@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
 import { Profiles } from "../api/api";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 const onSubmit = (e) => {
   debugger;
 };
@@ -84,6 +84,7 @@ function Registration() {
               <div className="admin">
                 <Field
                   name="isAdmin"
+                  type="checkbox"
                   render={({ input }) => (
                     <div>
                       <input {...input} type="checkbox" value="false" />
@@ -96,6 +97,7 @@ function Registration() {
               <button type="submit" className="submit">
                 Submit
               </button>
+
               <Link to="/sign-in">
                 <button type="button">Already got an account?</button>
               </Link>

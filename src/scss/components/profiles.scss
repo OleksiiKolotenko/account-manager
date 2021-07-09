@@ -57,6 +57,7 @@ html {
     flex-direction: row;
     justify-content: space-between;
     &_block {
+      justify-content: center;
       margin-bottom: 40px;
       color: #4e4b66;
       font-size: 24px;
@@ -70,8 +71,7 @@ html {
       border-radius: 16px;
       background-color: #f7f7fc;
       border-color: #f7f7fc;
-      span:first-child {
-        padding-top: 35px;
+      img {
         margin-bottom: 20px;
       }
       span {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Registration, Sign, UserProfiles, UserDashboard } from "./pages";
 import { Route, Redirect } from "react-router-dom";
-
+import Header from "./pages/Header";
 function App() {
   return (
     <div className="app">

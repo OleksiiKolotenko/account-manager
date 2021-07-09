@@ -1,17 +1,18 @@
 import React from "react";
 import Header from "./Header";
+import add from "../assets/img/add.svg";
 
 function Profiles() {
+  const [modal, setModal] = React.useState(false);
+
   return (
     <div className="app">
-      <Header></Header>
+      <Header />
       <h1>Profiles:</h1>
       <div className="profiles">
         <div className="profiles_block">
-          <span className="name">Name</span>
-          <span className="gender">Gender</span>
-          <span className="birthDate">Birth</span>
-          <span className="city">Kyiv</span>
+          <img src={add} alt="addProfiles" />
+          <button className="create">Create new profile</button>
         </div>
       </div>
     </div>

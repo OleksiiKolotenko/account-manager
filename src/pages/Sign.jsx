@@ -1,7 +1,7 @@
 import React from "react";
 import { Sign } from "../api/api";
 import { Form, Field } from "react-final-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const onSubmit = (e) => {
   debugger;
 };
@@ -28,14 +28,21 @@ const validate = (e) => {
 };
 
 function SignIn() {
+  const history = useHistory();
   const [mistake, setMistake] = React.useState(false);
 
   return (
     <div className="registration">
       <Form
         onSubmit={async (obj) => {
-          const Login = await Sign.login(obj);
-          Login?.articleId?.message ? setMistake(true) : setMistake(false);
+          const check = await Sign.login(obj);
+          if (check?.data?.message) {
+            setMistake(true);
+          } else if (check?.data?.token) {
+            setMistake(false);
+            localStorage.setItem("token", check.data.token);
+            history.push("/profiles");
+          }
         }}
         validate={validate}
         render={({ handleSubmit }) => (

@@ -1,12 +1,26 @@
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.header_options {
+  display: flex;
+  align-items: flex-end;
 }
 
 .app {
   font-family: "Poppins";
   .header {
-    padding-left: 70px;
+    padding: 0 70px;
     margin-bottom: 70px;
     font-family: "Poppins";
     .username {
@@ -27,7 +41,7 @@ body {
       img {
         margin-right: 8px;
       }
-      margin-left: 67%;
+      margin-left: 64%;
       display: flex;
       justify-content: space-between;
     }
@@ -37,11 +51,13 @@ body {
     font-weight: 400;
   }
   .profiles {
-    padding: 0px 0px 0px 70px;
+    padding: 0px 70px 0px 70px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: space-between;
     &_block {
-      margin-right: 130px;
+      margin-bottom: 40px;
       color: #4e4b66;
       font-size: 24px;
       font-weight: 500;

@@ -15,8 +15,20 @@ export const Profiles = {
 
 export const Sign = {
   login(obj) {
-    return initial
-      .post("login", obj)
-      .then((response) => ({ articleId: response.data }));
+    return initial.post("login", obj).then((response) => {
+      return { data: response.data };
+    });
   },
+};
+
+export const Me = () => {
+  return initial
+    .get("/me", {
+      headers: {
+        token: localStorage.getItem("token"),
+      },
+    })
+    .then((data) => {
+      return data.data;
+    });
 };

@@ -39,3 +39,22 @@
 .submit {
   margin: 10px 0px 10px 0px;
 }
+
+.modal_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px 0px 10px;
+  button {
+    display: flex;
+    justify-content: center;
+    width: 100px;
+    height: 38px;
+    background-color: #eff0f6;
+    border-radius: 9px;
+    border-color: white;
+  }
+  img {
+    margin-top: 8px;
+  }
+}

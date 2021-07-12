@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Sign } from "../api/api";
 import { Form, Field } from "react-final-form";
 import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoggedIn } from "../redux/actions/user";
 const onSubmit = (e) => {
   debugger;
 };
+
 const validate = (e) => {
   const errors = {};
 
@@ -28,8 +31,10 @@ const validate = (e) => {
 };
 
 function SignIn() {
+  const dispatch = useDispatch();
   const history = useHistory();
   const [mistake, setMistake] = React.useState(false);
+  const { loggedIn } = useSelector(({ user }) => user);
 
   return (
     <div className="registration">
@@ -42,6 +47,7 @@ function SignIn() {
             setMistake(false);
             localStorage.setItem("token", check.data.token);
             history.push("/profiles");
+            dispatch(setLoggedIn(true));
           }
         }}
         validate={validate}

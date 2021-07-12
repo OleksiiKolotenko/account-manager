@@ -16,12 +16,11 @@ function Header() {
   }, []);
 
   const user = useSelector(({ user }) => user.user);
+  const { loggedIn } = useSelector(({ user }) => user);
 
   if (!user) {
     return <span>Loading....</span>;
   }
-
-  console.log("User: ", user);
 
   return (
     <div className="header">
@@ -52,17 +51,16 @@ function Header() {
           <div className="header_options">
             <Link to="/profiles">
               <button>Profiles</button>
-              <img src={profileIcon} alt="" />
             </Link>
+            <img src={profileIcon} alt="" />
             <Link to="/profiles/dashboard">
               <button>Dashboard</button>
-              <img src={dashboardIcon} alt="" />
             </Link>
+            <img src={dashboardIcon} alt="" />
             <Link to="/profiles/users">
               <button>Users</button>
-              <img src={usersIcon} alt="" />
-              {console.log(localStorage)}
             </Link>
+            <img src={usersIcon} alt="" />
             <Link to="/sign-in">
               {
                 <>

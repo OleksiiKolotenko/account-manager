@@ -14,7 +14,6 @@ html {
 
 .header_options {
   display: flex;
-  align-items: flex-end;
 }
 
 .app {
@@ -23,6 +22,7 @@ html {
     padding: 0 70px;
     margin-bottom: 70px;
     font-family: "Poppins";
+
     .username {
       margin-left: 20px;
       font-weight: 600;
@@ -41,7 +41,7 @@ html {
       img {
         margin-right: 8px;
       }
-      margin-left: 64%;
+      margin-left: 66%;
       display: flex;
       justify-content: space-between;
     }

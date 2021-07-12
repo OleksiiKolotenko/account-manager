@@ -12,6 +12,10 @@ const validate = (e) => {
     errors.username = "Name is too short (<6)";
   }
 
+  if (!e.username) {
+    errors.username = "Name can't be empty";
+  }
+
   if (e.username && e.username.length < 1) {
     errors.username = "Name can't be empty";
   }
@@ -24,10 +28,16 @@ const validate = (e) => {
     errors.email = "Email is incorrect.";
   }
 
+  if (!e.email) {
+    errors.email = "Email can't be empty";
+  }
   if (e.email && !e.email.includes(".")) {
     errors.email = "Email is incorrect.";
   }
 
+  if (!e.password) {
+    errors.password = "Password can't be empty";
+  }
   if (e.password && e.password.length < 6) {
     errors.password = "Pass is too short (<6)";
   }
@@ -42,6 +52,7 @@ const validate = (e) => {
 function Registration() {
   const history = useHistory();
   const [mistake, setMistake] = React.useState(false);
+  const [exists, setExists] = React.useState(false);
 
   return (
     <div className="registration">
@@ -49,10 +60,16 @@ function Registration() {
         onSubmit={async (obj) => {
           const profile = await Profiles.register(obj);
           const check = await Sign.login(obj);
-          if (check?.data?.message) {
+          if (
+            profile?.error?.message === "User with such name already exists"
+          ) {
+            setExists(true);
+          } else if (check?.data?.message) {
             setMistake(true);
+            setExists(false);
           } else if (check?.data?.token) {
             setMistake(false);
+            setExists(false);
             localStorage.setItem("token", check.data.token);
             history.push("/profiles");
           }
@@ -69,6 +86,7 @@ function Registration() {
                   <div>
                     <input {...input} placeholder="Username" />
                     <br />
+                    {exists && <span>User with such name already exists!</span>}
                     {meta.touched && meta.error && <span>{meta.error}</span>}
                   </div>
                 )}

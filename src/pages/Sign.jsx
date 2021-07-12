@@ -15,6 +15,9 @@ const validate = (e) => {
     errors.email = "Email is incorrect.";
   }
 
+  if (!e.email) {
+    errors.email = "Email can't be empty.";
+  }
   if (e.email && !e.email.includes(".")) {
     errors.email = "Email is incorrect.";
   }
@@ -22,7 +25,9 @@ const validate = (e) => {
   if (e.password && e.password.length < 6) {
     errors.password = "Password is incorrect.";
   }
-
+  if (!e.password) {
+    errors.password = "Password can't be empty.";
+  }
   if (e.password && e.password.length > 18) {
     errors.password = "Password is incorrect.";
   }

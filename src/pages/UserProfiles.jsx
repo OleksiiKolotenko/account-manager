@@ -6,6 +6,7 @@ import { Form, Field } from "react-final-form";
 import add from "../assets/img/add.svg";
 import submit from "../assets/img/submit.svg";
 import cancel from "../assets/img/cancel.svg";
+import { profileCreate } from "../api/api";
 
 const onSubmit = (e) => {
   debugger;
@@ -14,8 +15,11 @@ const onSubmit = (e) => {
 const validate = (e) => {
   const errors = {};
 
-  if (e.password && e.password.length > 18) {
-    errors.password = "Password is incorrect.";
+  if (e.name && e.name.length > 20) {
+    errors.name = "Name is too long.";
+  }
+  if (!e.name) {
+    errors.name = "Name can't be empty.";
   }
   return errors;
 };
@@ -28,8 +32,9 @@ function Profiles() {
     <div className="app">
       <Header />
       <Form
-        onSubmit={(obj) => {
-          console.log(obj);
+        onSubmit={async (obj) => {
+          const profile = await profileCreate(obj);
+          console.log(profile);
         }}
         validate={validate}
         render={({ handleSubmit }) => (
@@ -57,7 +62,11 @@ function Profiles() {
                             <div>
                               <input {...input} placeholder="Your name" />
                               {meta.touched && meta.error && (
-                                <span>{meta.error}</span>
+                                <span>
+                                  {" "}
+                                  <br />
+                                  {meta.error}
+                                </span>
                               )}
                               <br />
                               <br />
@@ -67,14 +76,14 @@ function Profiles() {
                         <span className="field">Gender:</span>
                         <div className="div">
                           <Field
-                            name="sex"
+                            name="gender"
                             type="radio"
                             value="male"
                             component="input"
                           />
                           Male
                           <Field
-                            name="sex"
+                            name="gender"
                             type="radio"
                             value="female"
                             component="input"
@@ -90,9 +99,8 @@ function Profiles() {
                             <div>
                               <input
                                 {...input}
+                                type="date"
                                 placeholder="MM/DD/YYYY"
-                                onfocus="(this.type='date')"
-                                onblur="(this.type='text')"
                               />
                               {meta.touched && meta.error && (
                                 <span>{meta.error}</span>

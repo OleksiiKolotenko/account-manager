@@ -12,6 +12,10 @@ const validate = (e) => {
     errors.username = "Name is too short (<6)";
   }
 
+  if (e.username && e.username.length < 1) {
+    errors.username = "Name can't be empty";
+  }
+
   if (e.username && e.username.length > 16) {
     errors.username = "Name is too long (>16)";
   }

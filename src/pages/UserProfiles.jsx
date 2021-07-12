@@ -3,8 +3,6 @@ import Header from "./Header";
 import add from "../assets/img/add.svg";
 
 function Profiles() {
-  const [modal, setModal] = React.useState(false);
-
   return (
     <div className="app">
       <Header />
@@ -13,6 +11,7 @@ function Profiles() {
         <div className="profiles_block">
           <img src={add} alt="addProfiles" />
           <button className="create">Create new profile</button>
+          {console.log()}
         </div>
       </div>
     </div>

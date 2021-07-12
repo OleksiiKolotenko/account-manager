@@ -1,7 +1,7 @@
 import Header from "./Header";
 
-function UserDashboard() {
+function ProfileUsers() {
   return <Header></Header>;
 }
 
-export default UserDashboard;
+export default ProfileUsers;

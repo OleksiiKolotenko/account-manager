@@ -1,7 +1,13 @@
 import React from "react";
-import { Registration, Sign, UserProfiles, UserDashboard } from "./pages";
+import {
+  Registration,
+  Sign,
+  UserProfiles,
+  ProfileDashboad,
+  ProfileUsers,
+} from "./pages";
 import { Route, Redirect } from "react-router-dom";
-import Header from "./pages/Header";
+
 function App() {
   return (
     <div className="app">
@@ -11,7 +17,8 @@ function App() {
       <Route path="/registration" component={Registration} exact />
       <Route path="/sign-in" component={Sign} exact />
       <Route path="/profiles" component={UserProfiles} exact />
-      <Route path="/profiles/dashboard" component={UserDashboard} exact />
+      <Route path="/profiles/dashboard" component={ProfileDashboad} exact />
+      <Route path="/profiles/users" component={ProfileUsers} exact />
     </div>
   );
 }

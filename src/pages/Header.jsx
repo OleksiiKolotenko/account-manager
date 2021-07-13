@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Me } from "../api/api";
 import { connect, useDispatch, useSelector } from "react-redux";
+
 import adminPhoto from "../assets/img/avatarAdmin.svg";
 import userPhoto from "../assets/img/avatarUser.svg";
 import profileIcon from "../assets/img/profileIcon.svg";
@@ -24,7 +25,7 @@ function Header() {
 
   return (
     <div className="header">
-      {user && user.username && user.roles != "ADMIN" ? (
+      {user && user.username && user.roles !== "ADMIN" ? (
         <>
           <img src={userPhoto} alt="avatar" />
           <span className="username">{user.username}</span>

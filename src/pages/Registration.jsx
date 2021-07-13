@@ -59,7 +59,6 @@ function Registration() {
       <Form
         onSubmit={async (obj) => {
           const profile = await Profiles.register(obj);
-          console.log("profile:", profile);
           const check = await Sign.login(obj);
           if (
             profile?.error?.message === "User with such name already exists"

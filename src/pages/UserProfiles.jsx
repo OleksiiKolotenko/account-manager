@@ -21,6 +21,13 @@ const validate = (e) => {
   if (!e.name) {
     errors.name = "Name can't be empty.";
   }
+  if (!e.city) {
+    errors.city = "Please type in your city.";
+  }
+  if (e.birthdate && e.birthdate.length > 10) {
+    errors.birthdate = "Impossible date.";
+  }
+
   return errors;
 };
 
@@ -34,7 +41,9 @@ function Profiles() {
       <Form
         onSubmit={async (obj) => {
           const profile = await profileCreate(obj);
-          console.log(profile);
+          if (profile.name) {
+            setModalActive(false);
+          }
         }}
         validate={validate}
         render={({ handleSubmit }) => (
@@ -116,6 +125,7 @@ function Profiles() {
                           render={({ input, meta }) => (
                             <div>
                               <input {...input} placeholder="New York" />
+                              <br />
                               {meta.touched && meta.error && (
                                 <span>{meta.error}</span>
                               )}

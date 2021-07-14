@@ -51,12 +51,13 @@ html {
     font-weight: 400;
   }
   .profiles {
-    padding: 0px 70px 0px 70px;
+    margin: 0px 0px 0px 70px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     &_creation_block {
+      margin-right: 5%;
       justify-content: center;
       margin-bottom: 40px;
       color: #4e4b66;
@@ -79,6 +80,7 @@ html {
       }
     }
     &_block {
+      margin-right: 5%;
       justify-content: center;
       margin-bottom: 40px;
       color: #4e4b66;

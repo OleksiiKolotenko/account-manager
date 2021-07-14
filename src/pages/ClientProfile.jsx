@@ -3,7 +3,7 @@ import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
 import { fetchProfiles } from "../redux/actions/profiles.js";
-import Profile from "./Profile";
+import Profile from "./ProfileBlock";
 import add from "../assets/img/add.svg";
 import submit from "../assets/img/submit.svg";
 import cancel from "../assets/img/cancel.svg";
@@ -45,8 +45,8 @@ function Profiles() {
           <span className="create">Create new profile</span>
         </div>
         {profiles &&
-          profiles.map((profile) => {
-            return <Profile profile={profile} />;
+          profiles.map((profile, index) => {
+            return <Profile profile={profile} key={`profile_${index}`} />;
           })}
       </div>
     </div>

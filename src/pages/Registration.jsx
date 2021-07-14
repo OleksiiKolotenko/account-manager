@@ -2,9 +2,7 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { Profiles, Sign } from "../api/api";
 import { Link, useHistory } from "react-router-dom";
-const onSubmit = (e) => {
-  debugger;
-};
+
 const validate = (e) => {
   const errors = {};
 
@@ -53,27 +51,25 @@ function Registration() {
   const history = useHistory();
   const [mistake, setMistake] = React.useState(false);
   const [exists, setExists] = React.useState(false);
-
+  const onSubmit = async (obj) => {
+    const profile = await Profiles.register(obj);
+    const check = await Sign.login(obj);
+    if (profile?.error?.message === "User with such name already exists") {
+      setExists(true);
+    } else if (check?.data?.message) {
+      setMistake(true);
+      setExists(false);
+    } else if (check?.data?.token) {
+      setMistake(false);
+      setExists(false);
+      localStorage.setItem("token", check.data.token);
+      history.push("/profiles");
+    }
+  };
   return (
     <div className="registration">
       <Form
-        onSubmit={async (obj) => {
-          const profile = await Profiles.register(obj);
-          const check = await Sign.login(obj);
-          if (
-            profile?.error?.message === "User with such name already exists"
-          ) {
-            setExists(true);
-          } else if (check?.data?.message) {
-            setMistake(true);
-            setExists(false);
-          } else if (check?.data?.token) {
-            setMistake(false);
-            setExists(false);
-            localStorage.setItem("token", check.data.token);
-            history.push("/profiles");
-          }
-        }}
+        onSubmit={onSubmit}
         validate={validate}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>

@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Sign } from "../api/api";
 import { Form, Field } from "react-final-form";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../redux/actions/user";
-const onSubmit = (e) => {
-  debugger;
-};
 
 const validate = (e) => {
   const errors = {};
@@ -40,21 +37,22 @@ function SignIn() {
   const history = useHistory();
   const [mistake, setMistake] = React.useState(false);
   const { loggedIn } = useSelector(({ user }) => user);
+  const onSubmit = async (obj) => {
+    const check = await Sign.login(obj);
+    if (check?.data?.message) {
+      setMistake(true);
+    } else if (check?.data?.token) {
+      setMistake(false);
+      localStorage.setItem("token", check.data.token);
+      history.push("/profiles");
+      dispatch(setLoggedIn(true));
+    }
+  };
 
   return (
     <div className="registration">
       <Form
-        onSubmit={async (obj) => {
-          const check = await Sign.login(obj);
-          if (check?.data?.message) {
-            setMistake(true);
-          } else if (check?.data?.token) {
-            setMistake(false);
-            localStorage.setItem("token", check.data.token);
-            history.push("/profiles");
-            dispatch(setLoggedIn(true));
-          }
-        }}
+        onSubmit={onSubmit}
         validate={validate}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit}>

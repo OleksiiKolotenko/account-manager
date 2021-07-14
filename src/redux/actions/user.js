@@ -12,16 +12,6 @@ export const setGetUsers = () => (dispatch) => {
   });
 };
 
-export const setUserLoaded = (isLoaded) => ({
-  type: "SET_USER_LOADED",
-  payload: isLoaded,
-});
-
-export const setRouteUser = (routeUser) => ({
-  type: "SET_ROTE_USER",
-  payload: routeUser,
-});
-
 export const setLoggedIn = (loggedIn) => ({
   type: "SET_LOGGED_IN",
   payload: loggedIn,

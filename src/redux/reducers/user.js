@@ -1,8 +1,7 @@
 const initialState = {
   user: null,
-  isLoaded: false,
-  users: [],
   loggedIn: false,
+  users: [],
 };
 
 const user = (state = initialState, action) => {
@@ -11,12 +10,6 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
-        isLoaded: false,
-      };
-    case "SET_USER_LOADED":
-      return {
-        ...state,
-        isLoaded: action.payload,
       };
     case "SET_LOGGED_IN":
       return {

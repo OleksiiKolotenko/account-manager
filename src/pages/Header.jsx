@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Me } from "../api/api";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getData } from "../redux/reducers/authReducer";
+import { setLoggedIn } from "../redux/actions/user";
 
 import adminPhoto from "../assets/img/avatarAdmin.svg";
 import userPhoto from "../assets/img/avatarUser.svg";
 import profileIcon from "../assets/img/profileIcon.svg";
 import dashboardIcon from "../assets/img/dashboardIcon.svg";
 import usersIcon from "../assets/img/usersIcon.svg";
-import { getData } from "../redux/reducers/authReducer";
 
 function Header() {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ function Header() {
                 <>
                   <button
                     onClick={() => {
+                      dispatch(setLoggedIn(false));
                       localStorage.setItem("token", "");
                     }}
                   >
@@ -67,6 +69,7 @@ function Header() {
                 <>
                   <button
                     onClick={() => {
+                      dispatch(setLoggedIn(false));
                       localStorage.setItem("token", "");
                     }}
                   >

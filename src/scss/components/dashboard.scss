@@ -1,0 +1,24 @@
+.dashboard {
+  padding-left: 70px;
+  display: flex;
+  flex-direction: row;
+  &_blocks {
+    margin-right: 100px;
+    margin-bottom: 40px;
+    color: #000;
+    font-size: 24px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    width: 420px;
+    height: 160px;
+    border-radius: 16px;
+    background-color: #f7f7fc;
+    border-color: #f7f7fc;
+    span {
+      margin-bottom: 20px;
+    }
+  }
+}

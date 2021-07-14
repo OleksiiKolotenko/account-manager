@@ -5,6 +5,13 @@ export const setUser = (user) => ({
   payload: user,
 });
 
+export const setGetUsers = () => (dispatch) => {
+  axios.get("http://localhost:5000/auth/getUsers").then((users) => {
+    const action = { type: "GET_USERS", payload: users.data };
+    dispatch(action);
+  });
+};
+
 export const setUserLoaded = (isLoaded) => ({
   type: "SET_USER_LOADED",
   payload: isLoaded,
@@ -19,23 +26,6 @@ export const setLoggedIn = (loggedIn) => ({
   type: "SET_LOGGED_IN",
   payload: loggedIn,
 });
-
-// export const login =
-//   ({ username, password }) =>
-//   (dispatch) => {
-//     axios
-//       .post("/auth/login", {
-//         username,
-//         password,
-//       })
-//       .then((req) => {
-//         if (req.data) {
-//           localStorage.setItem("token", req.data.token);
-//           dispatch(setUser(req.data));
-//           dispatch(setLoggedIn(true));
-//         }
-//       });
-//   };
 
 export const fetchUser = () => (dispatch) => {
   axios.get("/users/me").then((user) => {

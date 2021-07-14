@@ -1,16 +1,24 @@
 import axios from "axios";
 
 export const fetchProfiles = (userId) => (dispatch) => {
-  axios.get(`/getProfiles/${userId}`).then((profiles) => {
-    console.log("Profiles:", profiles);
-  });
+  axios
+    .get(`http://localhost:5000/auth/getProfiles/${userId}`)
+    .then((profiles) => {
+      const action = { type: "SET_PROFILES", payload: profiles.data };
+      dispatch(action);
+    });
 };
 
 export const fetchAllProfiles = () => (dispatch) => {
-  console.log("Fetch start");
   axios.get(`http://localhost:5000/auth/getAllProfiles`).then((profiles) => {
     const action = { type: "SET_PROFILES", payload: profiles.data };
     dispatch(action);
   });
-  console.log("fetch end");
+};
+
+export const setAdults = () => (dispatch) => {
+  axios.get(`http://localhost:5000/auth/adult`).then((adults) => {
+    const action = { type: "SET_ADULT", payload: adults.data };
+    dispatch(action);
+  });
 };

@@ -5,9 +5,6 @@ import { profileCreate } from "../api/api";
 
 import submit from "../assets/img/submit.svg";
 import cancel from "../assets/img/cancel.svg";
-const onSubmit = (e) => {
-  debugger;
-};
 
 const validate = (e) => {
   const errors = {};
@@ -25,6 +22,10 @@ const validate = (e) => {
     errors.birthdate = "Impossible date.";
   }
 
+  if (e.birthdate && e.birthdate.length > new Date()) {
+    errors.birthdate = "Impossible date.";
+  }
+
   return errors;
 };
 
@@ -32,6 +33,12 @@ export const Modal = ({ active, setModalActive, toggleModal, children }) => {
   const bgRef = useRef();
   const outsideClick = (e) => {
     if (e.target === bgRef.current) {
+      setModalActive(false);
+    }
+  };
+  const onSubmit = async (obj) => {
+    const profile = await profileCreate(obj);
+    if (profile.name) {
       setModalActive(false);
     }
   };
@@ -48,12 +55,7 @@ export const Modal = ({ active, setModalActive, toggleModal, children }) => {
     >
       <div className={active ? "modal_content active" : "modal_content"}>
         <Form
-          onSubmit={async (obj) => {
-            const profile = await profileCreate(obj);
-            if (profile.name) {
-              setModalActive(false);
-            }
-          }}
+          onSubmit={onSubmit}
           validate={validate}
           render={({ handleSubmit }) => (
             <form onSubmit={handleSubmit}>
@@ -107,6 +109,8 @@ export const Modal = ({ active, setModalActive, toggleModal, children }) => {
                             {...input}
                             type="date"
                             placeholder="MM/DD/YYYY"
+                            min="1910-01-01"
+                            max="2021-07-14"
                           />
                           {meta.touched && meta.error && (
                             <span>{meta.error}</span>

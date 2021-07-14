@@ -1,12 +1,12 @@
 import React from "react";
 
-export const Profile = ({ name, gender, birthdate, city }) => {
+export const Profile = ({ profile }) => {
   return (
     <div className="profiles_block">
-      <span>{name}</span>
-      <span>{gender}</span>
-      <span>{birthdate}</span>
-      <span>{city}</span>
+      <span>{profile.name}</span>
+      <span>{profile.gender}</span>
+      <span>{profile.birthdate.slice(0, 10)}</span>
+      <span>{profile.city}</span>
     </div>
   );
 };

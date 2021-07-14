@@ -9,6 +9,11 @@ const profiles = (state = initialState, action) => {
         ...state,
         profiles: action.payload,
       };
+    case "SET_ADULT":
+      return {
+        ...state,
+        adults: action.payload,
+      };
     default:
       return state;
   }

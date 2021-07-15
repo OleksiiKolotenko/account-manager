@@ -5,6 +5,10 @@ export const setUser = (user) => ({
   payload: user,
 });
 
+export const logOutUser = () => ({
+  type: "OUT_USER",
+});
+
 export const setGetUsers = () => (dispatch) => {
   axios.get("http://localhost:5000/auth/getUsers").then((users) => {
     const action = { type: "GET_USERS", payload: users.data };

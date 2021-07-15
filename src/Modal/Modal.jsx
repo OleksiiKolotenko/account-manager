@@ -110,7 +110,7 @@ export const Modal = ({ active, setModalActive, toggleModal, children }) => {
                             type="date"
                             placeholder="MM/DD/YYYY"
                             min="1910-01-01"
-                            max="{2021-07-14}"
+                            max="2021-07-14"
                           />
                           {meta.touched && meta.error && (
                             <span>{meta.error}</span>

@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import { Me } from "../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { getData } from "../redux/reducers/authReducer";
-import { setLoggedIn } from "../redux/actions/user";
+import { setLoggedIn, logOutUser } from "../redux/actions/user";
 
 import adminPhoto from "../assets/img/avatarAdmin.svg";
 import userPhoto from "../assets/img/avatarUser.svg";
@@ -38,6 +38,7 @@ function Header() {
                     onClick={() => {
                       dispatch(setLoggedIn(false));
                       localStorage.setItem("token", "");
+                      dispatch(logOutUser());
                     }}
                   >
                     Log out
@@ -56,11 +57,11 @@ function Header() {
               <button>Profiles</button>
             </Link>
             <img src={profileIcon} alt="" />
-            <Link to="/profiles/dashboard">
+            <Link to="/dashboard">
               <button>Dashboard</button>
             </Link>
             <img src={dashboardIcon} alt="" />
-            <Link to="/profiles/users">
+            <Link to="/users">
               <button>Users</button>
             </Link>
             <img src={usersIcon} alt="" />
@@ -71,6 +72,7 @@ function Header() {
                     onClick={() => {
                       dispatch(setLoggedIn(false));
                       localStorage.setItem("token", "");
+                      dispatch(logOutUser());
                     }}
                   >
                     Log out

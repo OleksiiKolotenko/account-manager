@@ -17,8 +17,8 @@ function App() {
       <Route path="/registration" component={Registration} exact />
       <Route path="/sign-in" component={Sign} exact />
       <Route path="/profiles" component={UserProfiles} exact />
-      <Route path="/profiles/dashboard" component={ProfileDashboad} exact />
-      <Route path="/profiles/users" component={ProfileUsers} exact />
+      <Route path="/dashboard" component={ProfileDashboad} exact />
+      <Route path="/users" component={ProfileUsers} exact />
     </div>
   );
 }

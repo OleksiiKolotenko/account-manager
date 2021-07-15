@@ -7,6 +7,7 @@ import Profile from "./ProfileBlock";
 import add from "../assets/img/add.svg";
 import submit from "../assets/img/submit.svg";
 import cancel from "../assets/img/cancel.svg";
+import { Redirect } from "react-router-dom";
 
 function Profiles() {
   const dispatch = useDispatch();

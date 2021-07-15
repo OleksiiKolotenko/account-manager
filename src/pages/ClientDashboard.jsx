@@ -4,11 +4,13 @@ import Header from "./Header";
 import "../scss/components/dashboard.scss";
 import { fetchAllProfiles, setAdults } from "../redux/actions/profiles.js";
 import { setGetUsers } from "../redux/actions/user";
+import { Redirect } from "react-router-dom";
 
 function ProfileDashboard() {
   const dispatch = useDispatch();
   const profiles = useSelector((store) => store.profilesReducer.profiles);
   const users = useSelector((store) => store.user.users);
+  const user = useSelector(({ user }) => user.user);
   const adults = useSelector((store) => store.profilesReducer.adults);
 
   useEffect(() => {
@@ -17,9 +19,17 @@ function ProfileDashboard() {
     dispatch(setAdults());
   }, []);
 
+  if (user && user.roles && user.roles !== "ADMIN") {
+    return <Redirect to="/profiles"></Redirect>;
+  }
+  // if (user && user === null) {
+  //   return <Redirect to="/registration"></Redirect>;
+  // }
+
   return (
     <div className="app">
       <Header />
+
       <h1>Dashboard:</h1>
       <div className="dashboard">
         <div className="dashboard_blocks">Users: {users.length}</div>

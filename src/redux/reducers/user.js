@@ -11,6 +11,11 @@ const user = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+    case "OUT_USER":
+      return {
+        ...state,
+        user: [],
+      };
     case "SET_LOGGED_IN":
       return {
         ...state,

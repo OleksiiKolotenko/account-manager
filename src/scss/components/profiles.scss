@@ -19,20 +19,24 @@ html {
 .app {
   font-family: "Poppins";
   .header {
+    display: flex;
+    flex-wrap: wrap;
     padding: 0 70px;
     margin-bottom: 70px;
-    font-family: "Poppins";
-
-    .username {
-      margin-left: 20px;
-      font-weight: 600;
-    }
-    display: flex;
     align-items: center;
     width: 100%;
     height: 80px;
     background-color: #f7f7fc;
+    font-family: "Poppins";
+    .username {
+      margin-left: 20px;
+      font-weight: 600;
+    }
     &_options {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin-left: 66%;
       button {
         font-family: "Poppins";
         margin-right: 10px;
@@ -41,9 +45,6 @@ html {
       img {
         margin-right: 8px;
       }
-      margin-left: 66%;
-      display: flex;
-      justify-content: space-between;
     }
   }
   h1 {

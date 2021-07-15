@@ -22,3 +22,21 @@ export const setAdults = () => (dispatch) => {
     dispatch(action);
   });
 };
+
+export const editProfiles = (userId, profile, id) => (dispatch) => {
+  axios
+    .patch(`http://localhost:5000/auth/editProfile/${id}`, profile)
+    .then((updatedProfile) => {
+      const action = { type: "EDIT_PROFILES", payload: updatedProfile };
+      dispatch(fetchProfiles(userId));
+    });
+};
+
+export const deleteProfiles = (userId, profileId) => (dispatch) => {
+  axios
+    .delete(`http://localhost:5000/auth/deleteProfile/${profileId}`)
+    .then(() => {
+      const action = { type: "DELETE_PROFILE" };
+      dispatch(fetchProfiles(userId));
+    });
+};

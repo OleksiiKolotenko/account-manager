@@ -9,10 +9,19 @@ const profiles = (state = initialState, action) => {
         ...state,
         profiles: action.payload,
       };
+    case "EDIT_PROFILES":
+      return {
+        ...state,
+        updatedProfile: action.payload,
+      };
     case "SET_ADULT":
       return {
         ...state,
         adults: action.payload,
+      };
+    case "DELETE_PROFILE":
+      return {
+        ...state,
       };
     default:
       return state;

@@ -2,7 +2,8 @@ import React, { useRef } from "react";
 import "../Modal/modal.scss";
 import { Form, Field } from "react-final-form";
 import { profileCreate } from "../api/api";
-
+import { editProfiles, fetchProfiles } from "../redux/actions/profiles.js";
+import { useDispatch, useSelector } from "react-redux";
 import submit from "../assets/img/submit.svg";
 import cancel from "../assets/img/cancel.svg";
 
@@ -29,7 +30,16 @@ const validate = (e) => {
   return errors;
 };
 
-export const Modal = ({ active, setModalActive, toggleModal, children }) => {
+export const Modal = ({
+  active,
+  setModalActive,
+  toggleModal,
+  children,
+  status = "CREATE",
+  profileId,
+}) => {
+  const dispatch = useDispatch();
+  const user = useSelector(({ user }) => user);
   const bgRef = useRef();
   const outsideClick = (e) => {
     if (e.target === bgRef.current) {
@@ -37,9 +47,19 @@ export const Modal = ({ active, setModalActive, toggleModal, children }) => {
     }
   };
   const onSubmit = async (obj) => {
-    const profile = await profileCreate(obj);
-    if (profile.name) {
-      setModalActive(false);
+    console.log("subm");
+    if (status === "CREATE") {
+      const profile = await profileCreate(obj);
+      if (profile.name) {
+        console.log("fetch");
+        setModalActive(false);
+        dispatch(fetchProfiles(user.user.id));
+      }
+    } else {
+      editProfiles(user._id, obj, profileId).then(() => {
+        setModalActive(false);
+        dispatch(editProfiles());
+      });
     }
   };
 

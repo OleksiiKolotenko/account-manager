@@ -8,7 +8,7 @@ export const Users = ({ profiles, user }) => {
     <div className="users_block">
       <span>{user.username}</span>
       <span>{user.email}</span>
-      <span>{profileFilter()} Profiles</span>
+      <span>{profileFilter()} profiles</span>
     </div>
   );
 };

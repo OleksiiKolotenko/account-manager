@@ -12,10 +12,6 @@ html {
   overflow-x: hidden;
 }
 
-.header_options {
-  display: flex;
-}
-
 .app {
   font-family: "Poppins";
   .header {
@@ -98,6 +94,11 @@ html {
       border-color: #f7f7fc;
       span {
         margin-bottom: 20px;
+      }
+      button {
+        height: 40px;
+        width: 100px;
+        margin-right: 15px;
       }
     }
   }

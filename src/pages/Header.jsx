@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, Redirect } from "react-router-dom";
-import { Me } from "../api/api";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import { getData } from "../redux/reducers/authReducer";
 import { setLoggedIn, logOutUser } from "../redux/actions/user";
 

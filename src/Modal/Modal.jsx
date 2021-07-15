@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import "../Modal/modal.scss";
 import { Form, Field } from "react-final-form";
+import "../Modal/modal.scss";
 import { profileCreate } from "../api/api";
 import { editProfiles, fetchProfiles } from "../redux/actions/profiles.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -46,8 +46,8 @@ export const Modal = ({
       setModalActive(false);
     }
   };
+
   const onSubmit = async (obj) => {
-    console.log("subm");
     if (status === "CREATE") {
       const profile = await profileCreate(obj);
       if (profile.name) {
@@ -56,10 +56,8 @@ export const Modal = ({
         dispatch(fetchProfiles(user.user.id));
       }
     } else {
-      editProfiles(user._id, obj, profileId).then(() => {
-        setModalActive(false);
-        dispatch(editProfiles());
-      });
+      dispatch(editProfiles(user.user.id, obj, profileId));
+      setModalActive(false);
     }
   };
 

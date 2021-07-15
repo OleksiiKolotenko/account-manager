@@ -22,14 +22,13 @@ function ProfileDashboard() {
   if (user && user.roles && user.roles !== "ADMIN") {
     return <Redirect to="/profiles"></Redirect>;
   }
-  // if (user && user === null) {
-  //   return <Redirect to="/registration"></Redirect>;
-  // }
+  if (!localStorage.getItem("token")) {
+    return <Redirect to="/registration"></Redirect>;
+  }
 
   return (
     <div className="app">
       <Header />
-
       <h1>Dashboard:</h1>
       <div className="dashboard">
         <div className="dashboard_blocks">Users: {users.length}</div>

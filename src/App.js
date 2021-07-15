@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Redirect } from "react-router-dom";
 import {
   Registration,
   Sign,
@@ -6,7 +7,6 @@ import {
   ProfileDashboad,
   ProfileUsers,
 } from "./pages";
-import { Route, Redirect } from "react-router-dom";
 
 function App() {
   return (

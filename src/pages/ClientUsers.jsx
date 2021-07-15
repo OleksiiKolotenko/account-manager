@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import Header from "./Header";
+import Users from "./UserBlock";
 import { fetchAllProfiles, setAdults } from "../redux/actions/profiles.js";
 import { setGetUsers } from "../redux/actions/user";
-import Users from "./UserBlock";
-import { Redirect } from "react-router-dom";
+
 function ProfileUsers() {
   const dispatch = useDispatch();
   const profiles = useSelector((store) => store.profilesReducer.profiles);
@@ -15,11 +16,13 @@ function ProfileUsers() {
     dispatch(fetchAllProfiles());
     dispatch(setGetUsers());
   }, []);
-  // if (!user) {
-  //   return <Redirect to="/registration"></Redirect>;
-  // }
+
   if (user && user.roles && user.roles !== "ADMIN") {
     return <Redirect to="/profiles"></Redirect>;
+  }
+
+  if (!localStorage.getItem("token")) {
+    return <Redirect to="/registration"></Redirect>;
   }
 
   return (

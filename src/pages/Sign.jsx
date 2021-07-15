@@ -1,9 +1,9 @@
 import React from "react";
-import { Sign } from "../api/api";
 import { Form, Field } from "react-final-form";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../redux/actions/user";
+import { Sign } from "../api/api";
 
 const validate = (e) => {
   const errors = {};

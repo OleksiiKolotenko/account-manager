@@ -1,19 +1,12 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
-import { deleteProfiles, editProfiles } from "../redux/actions/profiles";
+import { deleteProfiles } from "../redux/actions/profiles";
+
 export const Profile = ({ profile }) => {
   const dispatch = useDispatch();
   const [modalActive, setModalActive] = React.useState(false);
   const toggleModal = () => setModalActive((store) => !store);
-  // function editClicker() {
-  //   dispatch(editProfiles, profile_.id, {
-  //     name: name,
-  //     gender: gender,
-  //     birthdate: birthdate,
-  //     city: city,
-  //   });
-  // }
 
   return (
     <>
@@ -23,7 +16,7 @@ export const Profile = ({ profile }) => {
         <span>{profile.birthdate.slice(0, 10)}</span>
         <span>{profile.city}</span>
         <div className="buttons">
-          <button>Edit</button>
+          <button onClick={toggleModal}>Edit</button>
           <button
             onClick={() => {
               dispatch(deleteProfiles(profile.user_id, profile._id));
@@ -35,6 +28,8 @@ export const Profile = ({ profile }) => {
       </div>
       {modalActive && (
         <Modal
+          status="EDIT"
+          profileId={profile._id}
           active={modalActive}
           setModalActive={setModalActive}
           toggleModal={toggleModal}

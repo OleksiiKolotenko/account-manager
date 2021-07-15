@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Header from "./Header";
 import { useSelector, useDispatch } from "react-redux";
+import Header from "./Header";
 import Modal from "../Modal/Modal";
 import { fetchProfiles } from "../redux/actions/profiles.js";
 import Profile from "./ProfileBlock";

@@ -52,3 +52,9 @@ export const profileCreate = (data) => {
       return data.data;
     });
 };
+
+export const profileAdminCreate = (data, userId) => {
+  return initial.post(`/profileAdminLoad/${userId}`, data).then((data) => {
+    return data.data;
+  });
+};

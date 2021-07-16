@@ -26,6 +26,11 @@ const user = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
+    case "GET_CHOSEN_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
     default:
       return state;
   }

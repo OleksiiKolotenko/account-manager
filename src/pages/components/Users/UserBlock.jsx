@@ -11,7 +11,7 @@ export const Users = ({ profiles, user }) => {
   const history = useHistory();
 
   const handleRoute = () => {
-    history.push("/profiles");
+    history.push(`/profiles/${user.user_id}`);
   };
   const dispatch = useDispatch();
   const profileFilter = () =>

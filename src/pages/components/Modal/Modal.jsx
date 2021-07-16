@@ -1,7 +1,8 @@
 import React, { useRef } from "react";
 import { Form, Field } from "react-final-form";
+import { useParams } from "react-router-dom";
 import "../Modal/modal.scss";
-import { profileCreate } from "../../../api/api";
+import { profileCreate, profileAdminCreate } from "../../../api/api";
 import { editProfiles, fetchProfiles } from "../../../redux/actions/profiles";
 import { useDispatch, useSelector } from "react-redux";
 import submit from "../../../assets/img/submit.svg";
@@ -34,12 +35,13 @@ export const Modal = ({
   active,
   setModalActive,
   toggleModal,
-  children,
   status = "CREATE",
   profileId,
 }) => {
+  const { id } = useParams();
   const dispatch = useDispatch();
   const user = useSelector(({ user }) => user);
+  const activeUserId = id ? id : user.user.id;
   const bgRef = useRef();
   const outsideClick = (e) => {
     if (e.target === bgRef.current) {
@@ -49,17 +51,22 @@ export const Modal = ({
 
   const onSubmit = async (obj) => {
     if (status === "CREATE") {
-      const profile = await profileCreate(obj);
+      let profile = null;
+      if (id) {
+        profile = await profileAdminCreate(obj, id);
+      } else {
+        profile = await profileCreate(obj);
+      }
       if (profile.name) {
-        console.log("fetch");
         setModalActive(false);
-        dispatch(fetchProfiles(user.user.id));
+        dispatch(fetchProfiles(activeUserId));
       }
     } else {
-      dispatch(editProfiles(user.user.id, obj, profileId));
+      dispatch(editProfiles(activeUserId, obj, profileId));
       setModalActive(false);
     }
   };
+  console.log(user.user.id, id);
 
   const close = () => {
     setModalActive(false);

@@ -16,6 +16,13 @@ export const setGetUsers = () => (dispatch) => {
   });
 };
 
+export const getChosenUser = (id) => (dispatch) => {
+  axios.get(`http://localhost:5000/auth/getChosenUser/${id}`).then((user) => {
+    const action = { type: "GET_CHOSEN_USERS", payload: user.data };
+    dispatch(action);
+  });
+};
+
 export const setLoggedIn = (loggedIn) => ({
   type: "SET_LOGGED_IN",
   payload: loggedIn,

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import Header from "./Header";
+import Header from "../Header/Header";
 import Users from "./UserBlock";
-import { fetchAllProfiles } from "../redux/actions/profiles.js";
-import { setGetUsers } from "../redux/actions/user";
+import { fetchAllProfiles } from "../../../redux/actions/profiles.js";
+import { setGetUsers } from "../../../redux/actions/user";
 
 function ProfileUsers() {
   const dispatch = useDispatch();

@@ -1,7 +1,10 @@
 import React from "react";
-import "../scss/components/users.scss";
+import "../../../scss/components/users.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchOtherProfiles, fetchProfiles } from "../redux/actions/profiles";
+import {
+  fetchOtherProfiles,
+  fetchProfiles,
+} from "../../../redux/actions/profiles";
 import { Redirect, useHistory } from "react-router-dom";
 export const Users = ({ profiles, user }) => {
   const history = useHistory();

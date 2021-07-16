@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn } from "../redux/actions/user";
 import { Sign } from "../api/api";
+import "../scss/components/login.scss";
 
 const validate = (e) => {
   const errors = {};

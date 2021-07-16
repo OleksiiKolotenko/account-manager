@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import Modal from "../Modal/Modal";
-import { deleteProfiles } from "../redux/actions/profiles";
+import { deleteProfiles } from "../../../redux/actions/profiles";
 
 export const Profile = ({ profile }) => {
   const dispatch = useDispatch();

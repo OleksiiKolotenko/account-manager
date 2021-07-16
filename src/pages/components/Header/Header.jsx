@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getData } from "../redux/reducers/authReducer";
-import { setLoggedIn, logOutUser } from "../redux/actions/user";
+import { getData } from "../../../redux/reducers/authReducer";
+import { setLoggedIn, logOutUser } from "../../../redux/actions/user";
 
-import adminPhoto from "../assets/img/avatarAdmin.svg";
-import userPhoto from "../assets/img/avatarUser.svg";
-import profileIcon from "../assets/img/profileIcon.svg";
-import dashboardIcon from "../assets/img/dashboardIcon.svg";
-import usersIcon from "../assets/img/usersIcon.svg";
+import adminPhoto from "../../../assets/img/avatarAdmin.svg";
+import userPhoto from "../../../assets/img/avatarUser.svg";
+import profileIcon from "../../../assets/img/profileIcon.svg";
+import dashboardIcon from "../../../assets/img/dashboardIcon.svg";
+import usersIcon from "../../../assets/img/usersIcon.svg";
 
 function Header() {
   const dispatch = useDispatch();

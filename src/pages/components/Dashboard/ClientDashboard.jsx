@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Header from "./Header";
-import "../scss/components/dashboard.scss";
-import { fetchAllProfiles, setAdults } from "../redux/actions/profiles.js";
-import { setGetUsers } from "../redux/actions/user";
+import Header from "../Header/Header";
+import "../../../scss/components/dashboard.scss";
+
+import {
+  fetchAllProfiles,
+  setAdults,
+} from "../../../redux/actions/profiles.js";
+import { setGetUsers } from "../../../redux/actions/user";
 import { Redirect } from "react-router-dom";
 
 function ProfileDashboard() {

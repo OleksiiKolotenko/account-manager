@@ -3,9 +3,9 @@ import { Route, Redirect } from "react-router-dom";
 import {
   Registration,
   Sign,
-  UserProfiles,
-  ProfileDashboad,
-  ProfileUsers,
+  ClientDashboard,
+  ClientProfile,
+  ClientUsers,
 } from "./pages";
 
 function App() {
@@ -16,9 +16,9 @@ function App() {
       </Route>
       <Route path="/registration" component={Registration} exact />
       <Route path="/sign-in" component={Sign} exact />
-      <Route path="/profiles" component={UserProfiles} exact />
-      <Route path="/dashboard" component={ProfileDashboad} exact />
-      <Route path="/users" component={ProfileUsers} exact />
+      <Route path="/profiles" component={ClientProfile} exact />
+      <Route path="/dashboard" component={ClientDashboard} exact />
+      <Route path="/users" component={ClientUsers} exact />
     </div>
   );
 }

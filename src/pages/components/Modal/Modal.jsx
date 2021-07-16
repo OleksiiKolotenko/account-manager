@@ -1,11 +1,11 @@
 import React, { useRef } from "react";
 import { Form, Field } from "react-final-form";
 import "../Modal/modal.scss";
-import { profileCreate } from "../api/api";
-import { editProfiles, fetchProfiles } from "../redux/actions/profiles.js";
+import { profileCreate } from "../../../api/api";
+import { editProfiles, fetchProfiles } from "../../../redux/actions/profiles";
 import { useDispatch, useSelector } from "react-redux";
-import submit from "../assets/img/submit.svg";
-import cancel from "../assets/img/cancel.svg";
+import submit from "../../../assets/img/submit.svg";
+import cancel from "../../../assets/img/cancel.svg";
 
 const validate = (e) => {
   const errors = {};

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Header from "./Header";
+import Header from "../Header/Header";
 import Modal from "../Modal/Modal";
-import { fetchProfiles } from "../redux/actions/profiles.js";
-import Profile from "./ProfileBlock";
-import add from "../assets/img/add.svg";
+import { fetchProfiles } from "../../../redux/actions/profiles.js";
+import ProfileBlock from "./ProfileBlock";
+import add from "../../../assets/img/add.svg";
 
 function Profiles() {
   const dispatch = useDispatch();
@@ -13,11 +13,11 @@ function Profiles() {
   const profiles = useSelector((profile) => profile.profilesReducer.profiles);
   const [modalActive, setModalActive] = React.useState(false);
 
-  // useEffect(() => {
-  //   if (user.user) {
-  //     dispatch(fetchProfiles(user.user.id));
-  //   }
-  // }, [user.user]);
+  useEffect(() => {
+    if (user.user) {
+      dispatch(fetchProfiles(user.user.id));
+    }
+  }, [user.user]);
 
   const toggleModal = () => setModalActive((store) => !store);
 
@@ -44,7 +44,7 @@ function Profiles() {
         </div>
         {profiles &&
           profiles.map((profile, index) => {
-            return <Profile profile={profile} key={`profile_${index}`} />;
+            return <ProfileBlock profile={profile} key={`profile_${index}`} />;
           })}
       </div>
     </div>

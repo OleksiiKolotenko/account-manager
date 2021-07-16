@@ -1,8 +1,9 @@
 export { default as Registration } from "./Registration.jsx";
 export { default as Sign } from "./Sign.jsx";
-export { default as UserProfiles } from "./ClientProfile";
-export { default as ProfileDashboad } from "./ClientDashboard";
-export { default as ProfileUsers } from "./ClientUsers";
-export { default as Header } from "./Header";
-export { default as Users } from "./UserBlock";
-export { default as Profile } from "./ProfileBlock";
+export { default as UserProfiles } from "./components/Profile/ClientProfile";
+export { default as ClientDashboard } from "./components/Dashboard/ClientDashboard";
+export { default as ClientProfile } from "./components/Profile/ClientProfile";
+export { default as Header } from "./components/Header/Header";
+export { default as Users } from "./components/Users/UserBlock";
+export { default as ProfileBlock } from "./components/Profile/ProfileBlock";
+export { default as ClientUsers } from "./components/Users/ClientUsers";

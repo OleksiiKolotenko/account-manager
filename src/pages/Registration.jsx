@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Field } from "react-final-form";
 import { Profiles, Sign } from "../api/api";
 import { Link, useHistory } from "react-router-dom";
+import "../scss/components/login.scss";
 
 const validate = (e) => {
   const errors = {};

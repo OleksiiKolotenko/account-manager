@@ -13,11 +13,11 @@ function Profiles() {
   const profiles = useSelector((profile) => profile.profilesReducer.profiles);
   const [modalActive, setModalActive] = React.useState(false);
 
-  useEffect(() => {
-    if (user.user) {
-      dispatch(fetchProfiles(user.user.id));
-    }
-  }, [user.user]);
+  // useEffect(() => {
+  //   if (user.user) {
+  //     dispatch(fetchProfiles(user.user.id));
+  //   }
+  // }, [user.user]);
 
   const toggleModal = () => setModalActive((store) => !store);
 

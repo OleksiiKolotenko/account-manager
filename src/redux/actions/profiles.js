@@ -9,6 +9,15 @@ export const fetchProfiles = (userId) => (dispatch) => {
     });
 };
 
+export const fetchOtherProfiles = (userId) => (dispatch) => {
+  axios
+    .get(`http://localhost:5000/auth/getOtherProfiles/${userId}`)
+    .then((profiles) => {
+      const action = { type: "SET_OTHER_PROFILES", payload: profiles.data };
+      dispatch(action);
+    });
+};
+
 export const fetchAllProfiles = () => (dispatch) => {
   axios.get(`http://localhost:5000/auth/getAllProfiles`).then((profiles) => {
     const action = { type: "SET_PROFILES", payload: profiles.data };

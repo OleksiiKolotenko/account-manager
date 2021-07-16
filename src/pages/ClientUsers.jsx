@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Header from "./Header";
 import Users from "./UserBlock";
-import { fetchAllProfiles, setAdults } from "../redux/actions/profiles.js";
+import { fetchAllProfiles } from "../redux/actions/profiles.js";
 import { setGetUsers } from "../redux/actions/user";
 
 function ProfileUsers() {

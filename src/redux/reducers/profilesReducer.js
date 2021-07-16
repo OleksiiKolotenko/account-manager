@@ -9,6 +9,11 @@ const profiles = (state = initialState, action) => {
         ...state,
         profiles: action.payload,
       };
+    case "SET_OTHER_PROFILES":
+      return {
+        ...state,
+        profiles: action.payload,
+      };
     case "EDIT_PROFILES":
       return {
         ...state,

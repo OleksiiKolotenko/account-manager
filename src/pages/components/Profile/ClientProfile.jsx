@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import Header from "../Header/Header";
 import Modal from "../Modal/Modal";
-import { fetchProfiles } from "../../../redux/actions/profiles.js";
-import { getChosenUser } from "../../../redux/actions/user.js";
+import {
+  fetchProfiles,
+  deleteAllProfiles,
+} from "../../../redux/actions/profiles.js";
+import { getChosenUser, deleteUser } from "../../../redux/actions/user.js";
 import ProfileBlock from "./ProfileBlock";
 import add from "../../../assets/img/add.svg";
 
 function Profiles() {
   const { id } = useParams();
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const { loggedIn } = useSelector(({ user }) => user);
@@ -28,19 +32,23 @@ function Profiles() {
 
   const toggleModal = () => setModalActive((store) => !store);
 
-  useEffect(() => {
-    console.log(chosenUser);
-  }, [chosenUser]);
+  useEffect(() => {}, [chosenUser]);
 
   useEffect(() => {
     if (id) dispatch(getChosenUser(id));
   }, [id]);
 
+  const handleClick = () => {
+    dispatch(deleteUser(id));
+    dispatch(deleteAllProfiles(id));
+    history.push(`/users/`);
+  };
+
   return (
     <div className="app">
       <Header />
 
-      {id ? (
+      {id && chosenUser ? (
         <div style={{ display: "flex" }}>
           <h1>User's profiles:</h1>
           <div className="users_delete">
@@ -49,7 +57,7 @@ function Profiles() {
             <span className="role">{chosenUser.roles}</span>
             <div className="buttons">
               <button>Edit</button>
-              <button>Delete</button>
+              <button onClick={handleClick}>Delete</button>
             </div>
           </div>
         </div>

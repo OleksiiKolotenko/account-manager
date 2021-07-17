@@ -10,8 +10,6 @@ import {
 export const Users = ({ profiles, user }) => {
   const history = useHistory();
 
-  const handleRoute = () => {};
-
   const dispatch = useDispatch();
 
   const handleClick = () => {

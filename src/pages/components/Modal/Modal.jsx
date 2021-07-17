@@ -61,6 +61,7 @@ export const Modal = ({
         setModalActive(false);
         dispatch(fetchProfiles(activeUserId));
       }
+    } else if (status === "EDIT_USER") {
     } else {
       dispatch(editProfiles(activeUserId, obj, profileId));
       setModalActive(false);

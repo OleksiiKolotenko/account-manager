@@ -29,7 +29,9 @@ function Header() {
       {user && user.username && user.roles !== "ADMIN" ? (
         <>
           <img src={userPhoto} alt="avatar" />
-          <span className="username">{user.username}</span>
+          <span className="username" onClick>
+            {user.username}
+          </span>
           <div className="header_options">
             <Link to="/sign-in">
               {

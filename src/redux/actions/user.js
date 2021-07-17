@@ -39,14 +39,18 @@ export const fetchUser = () => (dispatch) => {
   });
 };
 
-export const updateUser = (id, user) => (dispatch) => {
-  axios.patch(`/users/${id}`, user).then(() => {
-    dispatch(fetchUser());
-  });
+export const editUser = (id) => (dispatch) => {
+  axios
+    .patch(`http://localhost:5000/auth/editProfile/${id}`)
+    .then((updatedUser) => {
+      const action = { type: "EDIT_PROFILES", payload: updatedUser };
+    });
 };
 
-export const deleteUser = (userId) => {
-  axios.delete(`/users/${userId}`);
+export const deleteUser = (userId) => (dispatch) => {
+  axios.delete(`http://localhost:5000/auth/deleteUser/${userId}`).then(() => {
+    dispatch(setGetUsers());
+  });
 };
 
 export const register = (user) => {

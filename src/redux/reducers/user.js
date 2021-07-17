@@ -17,6 +17,15 @@ const user = (state = initialState, action) => {
         ...state,
         user: [],
       };
+    case "EDIT_USER":
+      return {
+        ...state,
+        updatedProfile: action.payload,
+      };
+    case "DELETE_USER":
+      return {
+        ...state,
+      };
     case "SET_LOGGED_IN":
       return {
         ...state,

@@ -2,6 +2,7 @@ const initialState = {
   user: null,
   loggedIn: false,
   users: [],
+  chosenUser: null,
 };
 
 const user = (state = initialState, action) => {
@@ -29,7 +30,7 @@ const user = (state = initialState, action) => {
     case "GET_CHOSEN_USERS":
       return {
         ...state,
-        users: action.payload,
+        chosenUser: action.payload,
       };
     default:
       return state;

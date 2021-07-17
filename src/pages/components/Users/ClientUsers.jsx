@@ -29,7 +29,6 @@ function ProfileUsers() {
     <div className="app">
       <Header />
       <h1>Users</h1>
-
       <div className="users">
         {users &&
           users.users.map((user, index) => {

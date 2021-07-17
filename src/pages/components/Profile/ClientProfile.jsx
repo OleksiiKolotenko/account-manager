@@ -14,7 +14,7 @@ function Profiles() {
   const dispatch = useDispatch();
   const { loggedIn } = useSelector(({ user }) => user);
   const user = useSelector(({ user }) => user);
-  const chosenUser = useSelector(({ user }) => user);
+  const chosenUser = useSelector(({ user }) => user.chosenUser);
   const profiles = useSelector((profile) => profile.profilesReducer.profiles);
   const [modalActive, setModalActive] = React.useState(false);
 
@@ -28,19 +28,25 @@ function Profiles() {
 
   const toggleModal = () => setModalActive((store) => !store);
 
+  useEffect(() => {
+    console.log(chosenUser);
+  }, [chosenUser]);
+
+  useEffect(() => {
+    if (id) dispatch(getChosenUser(id));
+  }, [id]);
+
   return (
     <div className="app">
       <Header />
 
       {id ? (
         <div style={{ display: "flex" }}>
-          {() => dispatch(getChosenUser(id))}
-          {console.log(user.user)}
           <h1>User's profiles:</h1>
           <div className="users_delete">
-            <span className="username">J</span>
-            <span className="email">S</span>
-            <span className="role">X</span>
+            <span className="username">{chosenUser.username}</span>
+            <span className="email">{chosenUser.email}</span>
+            <span className="role">{chosenUser.roles}</span>
             <div className="buttons">
               <button>Edit</button>
               <button>Delete</button>

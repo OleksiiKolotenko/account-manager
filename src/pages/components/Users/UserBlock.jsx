@@ -10,22 +10,19 @@ import {
 export const Users = ({ profiles, user }) => {
   const history = useHistory();
 
-  const handleRoute = () => {
-    history.push(`/profiles/${user.user_id}`);
-  };
+  const handleRoute = () => {};
+
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(fetchOtherProfiles(user._id));
+    history.push(`/profiles/${user._id}`);
+  };
   const profileFilter = () =>
-    profiles.filter((x) => x.user_id === user.user_id).length;
+    profiles.filter((x) => x.user_id === user._id).length;
 
   return (
-    <div
-      className="users_block"
-      onClick={() => {
-        dispatch(fetchOtherProfiles(user.user_id));
-        handleRoute();
-        dispatch(fetchProfiles(user.user_id));
-      }}
-    >
+    <div className="users_block" onClick={handleClick}>
       <span>{user.username}</span>
       <span>{user.email}</span>
       <span>{profileFilter()} profiles</span>

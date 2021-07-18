@@ -39,11 +39,12 @@ export const fetchUser = () => (dispatch) => {
   });
 };
 
-export const editUser = (id) => (dispatch) => {
+export const editUser = (id, obj) => (dispatch) => {
   axios
-    .patch(`http://localhost:5000/auth/editProfile/${id}`)
+    .patch(`http://localhost:5000/auth/editUser/${id}`, obj)
     .then((updatedUser) => {
       const action = { type: "EDIT_PROFILES", payload: updatedUser };
+      dispatch(getChosenUser(id));
     });
 };
 

@@ -10,6 +10,7 @@ import {
 import { getChosenUser, deleteUser } from "../../../redux/actions/user.js";
 import ProfileBlock from "./ProfileBlock";
 import add from "../../../assets/img/add.svg";
+import ModalUser from "../Modal/ModalUser";
 
 function Profiles() {
   const { id } = useParams();
@@ -21,6 +22,7 @@ function Profiles() {
   const chosenUser = useSelector(({ user }) => user.chosenUser);
   const profiles = useSelector((profile) => profile.profilesReducer.profiles);
   const [modalActive, setModalActive] = React.useState(false);
+  const [modalUserActive, setModalUserActive] = React.useState(false);
 
   useEffect(() => {
     if (!id && user.user) {
@@ -31,6 +33,7 @@ function Profiles() {
   }, [user.user]);
 
   const toggleModal = () => setModalActive((store) => !store);
+  const toggleUserModal = () => setModalUserActive((store) => !store);
 
   useEffect(() => {}, [chosenUser]);
 
@@ -56,13 +59,20 @@ function Profiles() {
             <span className="email">{chosenUser.email}</span>
             <span className="role">{chosenUser.roles}</span>
             <div className="buttons">
-              <button>Edit</button>
+              <button onClick={toggleUserModal}>Edit</button>
               <button onClick={handleClick}>Delete</button>
             </div>
           </div>
         </div>
       ) : (
         <h1>My profiles:</h1>
+      )}
+      {modalUserActive && (
+        <ModalUser
+          active={modalUserActive}
+          setModalActive={setModalUserActive}
+          toggleModal={toggleUserModal}
+        ></ModalUser>
       )}
       {modalActive && (
         <Modal
@@ -72,12 +82,7 @@ function Profiles() {
         ></Modal>
       )}
       <div className="profiles">
-        <div
-          className="profiles_creation_block"
-          onClick={() => {
-            toggleModal();
-          }}
-        >
+        <div className="profiles_creation_block" onClick={toggleModal}>
           <img src={add} alt="addProfiles" />
           <span className="create">Create new profile</span>
         </div>

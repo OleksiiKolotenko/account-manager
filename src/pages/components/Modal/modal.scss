@@ -10,15 +10,12 @@
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: 0.5s;
   &_content {
     padding: 20px;
     border-radius: 12px;
     background-color: #fff;
     height: 575px;
     width: 600px;
-    transform: scale(0.5);
-    transition: 0.4s all;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,8 +26,4 @@
 .modal.active {
   opacity: 1;
   pointer-events: all;
-}
-
-.modal_content.active {
-  transform: scale(1);
 }

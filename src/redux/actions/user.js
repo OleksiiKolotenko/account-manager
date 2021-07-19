@@ -1,5 +1,9 @@
 import axios from "axios";
 
+export const register = (user) => {
+  axios.post("/auth/register", user).then(() => {});
+};
+
 export const setUser = (user) => ({
   type: "SET_USER",
   payload: user,
@@ -52,8 +56,4 @@ export const deleteUser = (userId) => (dispatch) => {
   axios.delete(`http://localhost:5000/auth/deleteUser/${userId}`).then(() => {
     dispatch(setGetUsers());
   });
-};
-
-export const register = (user) => {
-  axios.post("/auth/register", user).then(() => {});
 };

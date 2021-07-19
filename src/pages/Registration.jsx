@@ -1,18 +1,24 @@
 import React from "react";
+import { Link, useHistory } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import { Profiles, Sign } from "../api/api";
-import { Link, useHistory } from "react-router-dom";
 import "../scss/components/login.scss";
+import { setLoggedIn } from "../redux/actions/user";
+import { useDispatch } from "react-redux";
 
 const validate = (e) => {
   const errors = {};
-
+  let regexName = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
   if (e.username && e.username.length < 6) {
     errors.username = "Name is too short (<6)";
   }
 
   if (!e.username) {
-    errors.username = "Name can't be empty";
+    errors.username = "Name can't be empty.";
+  }
+
+  if (e.username && e.username.match(regexName)) {
+    errors.username = "Special symbols are forbiden.";
   }
 
   if (e.username && e.username.length < 1) {
@@ -35,7 +41,7 @@ const validate = (e) => {
   }
 
   if (!e.password) {
-    errors.password = "Password can't be empty";
+    errors.password = "Password can't be empty.";
   }
   if (e.password && e.password.length < 6) {
     errors.password = "Pass is too short (<6)";
@@ -50,6 +56,7 @@ const validate = (e) => {
 
 function Registration() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [mistake, setMistake] = React.useState(false);
   const [exists, setExists] = React.useState(false);
   const onSubmit = async (obj) => {
@@ -64,6 +71,7 @@ function Registration() {
       setMistake(false);
       setExists(false);
       localStorage.setItem("token", check.data.token);
+      dispatch(setLoggedIn(true));
       history.push("/profiles");
     }
   };

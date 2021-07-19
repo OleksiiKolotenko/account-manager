@@ -67,7 +67,6 @@ export const Modal = ({
       setModalActive(false);
     }
   };
-  console.log(user.user.id, id);
 
   const close = () => {
     setModalActive(false);

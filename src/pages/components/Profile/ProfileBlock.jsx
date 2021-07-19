@@ -11,7 +11,6 @@ export const Profile = ({ profile }) => {
     <>
       {profile && (
         <div className="profiles_block">
-          {console.log(profile)}
           <span>{profile.name}</span>
           <span>{profile.gender}</span>
           <span>{profile.birthdate.slice(0, 10)}</span>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import Header from "../Header/Header";
 import Modal from "../Modal/Modal";
 import {
@@ -41,16 +41,31 @@ function Profiles() {
     if (id) dispatch(getChosenUser(id));
   }, [id]);
 
-  const handleClick = () => {
+  const check = () => {
+    if (id === user.user.id) {
+      return <Redirect to="/profiles"></Redirect>;
+    }
+  };
+
+  const handleChosenClick = () => {
     dispatch(deleteUser(id));
     dispatch(deleteAllProfiles(id));
     history.push(`/users/`);
   };
 
+  const handleMyClick = () => {
+    history.push(`/profiles`);
+  };
+
+  if (user && id) {
+    if (id === user.user.id) {
+      handleMyClick();
+    }
+  }
+
   return (
     <div className="app">
       <Header />
-
       {id && chosenUser ? (
         <div style={{ display: "flex" }}>
           <h1>User's profiles:</h1>
@@ -60,7 +75,7 @@ function Profiles() {
             <span className="role">{chosenUser.roles}</span>
             <div className="buttons">
               <button onClick={toggleUserModal}>Edit</button>
-              <button onClick={handleClick}>Delete</button>
+              <button onClick={handleChosenClick}>Delete</button>
             </div>
           </div>
         </div>

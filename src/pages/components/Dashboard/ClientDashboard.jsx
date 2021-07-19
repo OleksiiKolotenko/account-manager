@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Header from "../Header/Header";
+import { Redirect } from "react-router-dom";
 import "../../../scss/components/dashboard.scss";
 
 import {
@@ -8,7 +9,6 @@ import {
   setAdults,
 } from "../../../redux/actions/profiles.js";
 import { setGetUsers } from "../../../redux/actions/user";
-import { Redirect } from "react-router-dom";
 
 function ProfileDashboard() {
   const dispatch = useDispatch();

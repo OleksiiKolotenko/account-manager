@@ -1,15 +1,19 @@
 import React, { useRef } from "react";
 import { Form, Field } from "react-final-form";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import "../Modal/modal.scss";
 import { editUser } from "../../../redux/actions/user";
-import { useDispatch, useSelector } from "react-redux";
 import submit from "../../../assets/img/submit.svg";
 import cancel from "../../../assets/img/cancel.svg";
 
 const validate = (e) => {
   const errors = {};
+  let regexName = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g;
 
+  if (e.username && e.username.match(regexName)) {
+    errors.username = "Special symbols are forbiden";
+  }
   if (e.username && e.username.length < 6) {
     errors.username = "Name is too short (<6)";
   }
@@ -18,12 +22,12 @@ const validate = (e) => {
     errors.username = "Name can't be empty";
   }
 
-  if (e.username && e.username.length < 1) {
-    errors.username = "Name can't be empty";
-  }
-
   if (e.username && e.username.length > 16) {
     errors.username = "Name is too long (>16)";
+  }
+
+  if (e.username && e.username.includes("@")) {
+    errors.username = "Such symbols are forbiden.";
   }
 
   if (e.email && !e.email.includes("@")) {
@@ -35,9 +39,6 @@ const validate = (e) => {
   }
   if (e.email && !e.email.includes(".")) {
     errors.email = "Email is incorrect.";
-  }
-  if (!e.roles) {
-    errors.roles = "Choose one.";
   }
 
   return errors;
@@ -59,7 +60,6 @@ export const ModalUser = ({ active, setModalActive, toggleModal }) => {
     dispatch(editUser(id, obj));
     setModalActive(false);
   };
-  console.log(user.user.id, id);
 
   const close = () => {
     setModalActive(false);
@@ -106,6 +106,8 @@ export const ModalUser = ({ active, setModalActive, toggleModal }) => {
                         <div>
                           <input {...input} placeholder="email" />
                           <br />
+                          <br />
+
                           {meta.touched && meta.error && (
                             <span>{meta.error}</span>
                           )}
@@ -128,7 +130,6 @@ export const ModalUser = ({ active, setModalActive, toggleModal }) => {
                         component="input"
                       />
                       ADMIN
-                      <br />
                       <br />
                     </div>
 

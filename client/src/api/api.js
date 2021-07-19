@@ -2,8 +2,10 @@ import axios from "axios";
 
 const initial = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:5000/auth/",
+  baseURL: "http://api-server:5000/auth/",
 });
+
+// baseURL: "http://localhost:5000/auth/",
 
 export const Profiles = {
   register(obj) {

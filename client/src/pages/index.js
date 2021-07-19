@@ -1,6 +1,5 @@
-export { default as Registration } from "./Registration.jsx";
+export { default as Registration } from "./Registration";
 export { default as Sign } from "./Sign.jsx";
-export { default as UserProfiles } from "./components/Profile/ClientProfile";
 export { default as ClientDashboard } from "./components/Dashboard/ClientDashboard";
 export { default as ClientProfile } from "./components/Profile/ClientProfile";
 export { default as Header } from "./components/Header/Header";

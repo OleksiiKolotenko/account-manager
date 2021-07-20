@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetchProfiles = (userId) => (dispatch) => {
   axios
-    .get(`http://localhost:5000/auth/getProfiles/${userId}`)
+    .get(`https://arcane-falls-56185.herokuapp.com/auth/getProfiles/${userId}`)
     .then((profiles) => {
       const action = { type: "SET_PROFILES", payload: profiles.data };
       dispatch(action);
@@ -11,7 +11,9 @@ export const fetchProfiles = (userId) => (dispatch) => {
 
 export const fetchOtherProfiles = (userId) => (dispatch) => {
   axios
-    .get(`http://localhost:5000/auth/getOtherProfiles/${userId}`)
+    .get(
+      `https://arcane-falls-56185.herokuapp.com/auth/getOtherProfiles/${userId}`
+    )
     .then((profiles) => {
       const action = { type: "SET_OTHER_PROFILES", payload: profiles.data };
       dispatch(action);
@@ -19,22 +21,29 @@ export const fetchOtherProfiles = (userId) => (dispatch) => {
 };
 
 export const fetchAllProfiles = () => (dispatch) => {
-  axios.get(`http://localhost:5000/auth/getAllProfiles`).then((profiles) => {
-    const action = { type: "SET_PROFILES", payload: profiles.data };
-    dispatch(action);
-  });
+  axios
+    .get(`https://arcane-falls-56185.herokuapp.com/auth/getAllProfiles`)
+    .then((profiles) => {
+      const action = { type: "SET_PROFILES", payload: profiles.data };
+      dispatch(action);
+    });
 };
 
 export const setAdults = () => (dispatch) => {
-  axios.get(`http://localhost:5000/auth/adult`).then((adults) => {
-    const action = { type: "SET_ADULT", payload: adults.data };
-    dispatch(action);
-  });
+  axios
+    .get(`https://arcane-falls-56185.herokuapp.com/auth/adult`)
+    .then((adults) => {
+      const action = { type: "SET_ADULT", payload: adults.data };
+      dispatch(action);
+    });
 };
 
 export const editProfiles = (userId, profile, id) => (dispatch) => {
   axios
-    .patch(`http://localhost:5000/auth/editProfile/${id}`, profile)
+    .patch(
+      `https://arcane-falls-56185.herokuapp.com/auth/editProfile/${id}`,
+      profile
+    )
     .then((updatedProfile) => {
       const action = { type: "EDIT_PROFILES", payload: updatedProfile };
       dispatch(fetchProfiles(userId));
@@ -43,7 +52,9 @@ export const editProfiles = (userId, profile, id) => (dispatch) => {
 
 export const deleteProfiles = (userId, profileId) => (dispatch) => {
   axios
-    .delete(`http://localhost:5000/auth/deleteProfile/${profileId}`)
+    .delete(
+      `https://arcane-falls-56185.herokuapp.com/auth/deleteProfile/${profileId}`
+    )
     .then(() => {
       const action = { type: "DELETE_PROFILE" };
       dispatch(fetchProfiles(userId));
@@ -52,7 +63,9 @@ export const deleteProfiles = (userId, profileId) => (dispatch) => {
 
 export const deleteAllProfiles = (userId) => (dispatch) => {
   axios
-    .delete(`http://localhost:5000/auth/deleteAllProfiles/${userId}`)
+    .delete(
+      `https://arcane-falls-56185.herokuapp.com/auth/deleteAllProfiles/${userId}`
+    )
     .then(() => {
       dispatch(fetchProfiles(userId));
       dispatch(fetchAllProfiles());

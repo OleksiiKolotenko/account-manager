@@ -2,11 +2,9 @@ import axios from "axios";
 
 const initial = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:5000/auth/",
+  baseURL: "https://arcane-falls-56185.herokuapp.com/auth/",
 });
-
-// baseURL: "http://localhost:5000/auth/",
-
+// s
 export const Profiles = {
   register(obj) {
     return initial

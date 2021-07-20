@@ -7,8 +7,13 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
-
+app.use(
+  cors({
+    credentials: true,
+    origin: "https://tranquil-wave-73797.herokuapp.com",
+  })
+);
+//s
 app.use("/auth", mainRouter);
 const start = async () => {
   try {

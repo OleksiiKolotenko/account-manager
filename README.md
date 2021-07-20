@@ -1,5 +1,4 @@
-App starts at http://localhost:3000/
-Server starts at http://localhost:5000/
+https://tranquil-wave-73797.herokuapp.com/
 To build an app with docker use docker-compose up --build 
 
 Technologies used: 
